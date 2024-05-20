@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <div style="position: fixed; width: 200px;">
+        <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">
+            <nav class="nav nav-pills flex-column">
+                {% for category in categories %}
+                    <a class="nav-link" href="{% url 'index' %}">
+                        <img src="{{ category.icon.path }}" width="25px"> {{ category.name }}
+                    </a>
+                {% endfor %}
+            </nav>
+        </nav>
+    </div>
+    <div class="col-10" style="margin-left: 220px">
+    <img src="{{ app.image.path }}" style="width: 100px">
+    <h1>{{ app.name }}</h1>
+    <h3>{{ app.description }}</h3>
+    {{ app.site }}
+    </div>
+
+{% endblock %}

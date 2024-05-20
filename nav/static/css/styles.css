@@ -1,0 +1,12 @@
+.sidebar-nav {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+.ai-nav-brand{
+  margin-right: 50px;
+  margin-left: 50px;
+}
+.ai-nav-brand-item{
+  margin-right: 20px;
+}

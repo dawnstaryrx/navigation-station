@@ -1,0 +1,49 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <div style="position: fixed; width: 200px;">
+        <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">
+            <nav class="nav nav-pills flex-column">
+                {% for category in categories %}
+                    <a class="nav-link" href="#sidebar-item+{{ category.name }}">
+                        <img src="{{ category.icon.path }}" width="25px"> {{ category.name }}
+                    </a>
+                {% endfor %}
+            </nav>
+        </nav>
+    </div>
+    <div class="col-10" style="margin-left: 220px">
+        <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
+             class="scrollspy-example-2" tabindex="0">
+            {% for category in categories %}
+                <div id="sidebar-item+{{ category.name }}">
+                    <h4>{{ category.name }}</h4>
+                    <div class="row">
+                        {% for ap in category.app.all %}
+                            <div class="col-sm-3 mb-6 mb-sm-3">
+                                <div class="card">
+                                    <div class="card-body" style="height: 150px">
+                                        <div class="row">
+                                            <div class="col-md-3 mb-3">
+                                                <img src="{{ ap.image.path }}" width="50px">
+                                            </div>
+                                            <div class="col-md-9 mb-9">
+                                                <h5 class="card-title">{{ ap.name }}</h5>
+                                                <p class="card-text">{{ ap.description | slice:":20" }}</p>
+                                                <a href="{{ ap.get_absolute_url }}" target="_blank"
+                                                   class="btn btn-link"> 简介 </a>
+                                                <a href="{{ ap.site }}" target="_blank" class="btn btn-link"> 直达 </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            没有
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
